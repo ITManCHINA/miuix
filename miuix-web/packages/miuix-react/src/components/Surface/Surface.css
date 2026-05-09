@@ -1,0 +1,36 @@
+.miuix-surface {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.miuix-surface--clickable {
+  cursor: pointer;
+}
+
+/* Optional hover state for desktop */
+@media (hover: hover) {
+  .miuix-surface--clickable:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.04);
+    pointer-events: none;
+  }
+}
+
+.miuix-surface--clickable:active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}

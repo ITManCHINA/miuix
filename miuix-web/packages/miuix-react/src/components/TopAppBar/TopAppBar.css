@@ -1,0 +1,81 @@
+.miuix-top-app-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--miuix-color-surface);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.miuix-top-app-bar-top-row {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.miuix-top-app-bar-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miuix-top-app-bar-small-title-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.miuix-top-app-bar-small-title {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--miuix-color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.miuix-top-app-bar-small-subtitle {
+  font-size: 14px;
+  color: var(--miuix-color-on-surface-variant-summary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.miuix-top-app-bar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.miuix-top-app-bar-large-title-container {
+  padding: 0 26px 8px 26px;
+  position: absolute;
+  top: 52px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--miuix-color-surface);
+  z-index: 1;
+}
+
+.miuix-top-app-bar-large-title {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--miuix-color-on-surface);
+  line-height: 1.2;
+}
+
+.miuix-top-app-bar-large-subtitle {
+  font-size: 14px;
+  color: var(--miuix-color-on-surface-variant-summary);
+  margin-top: 4px;
+}

@@ -14,3 +14,7 @@ export * from './components/Preference/CheckboxPreference';
 export * from './components/Preference/RadioButtonPreference';
 export * from './components/Card/Card';
 export * from './components/ProgressIndicator/ProgressIndicator';
+export * from './components/Surface/Surface';
+export * from './components/FloatingActionButton/FloatingActionButton';
+export * from './components/TopAppBar/TopAppBar';
+export * from './components/NavigationBar/NavigationBar';
