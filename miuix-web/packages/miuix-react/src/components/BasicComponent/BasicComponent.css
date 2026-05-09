@@ -1,0 +1,72 @@
+.miuix-basic-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 56px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.miuix-basic-component--clickable {
+  cursor: pointer;
+}
+
+.miuix-basic-component--clickable:active:not(.miuix-basic-component--disabled) {
+  background-color: rgba(0, 0, 0, 0.05); /* Sink/press effect simulation */
+}
+
+.miuix-basic-component--disabled {
+  cursor: not-allowed;
+}
+
+.miuix-basic-component-main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.miuix-basic-component-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 16px;
+}
+
+.miuix-basic-component-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0; /* Let text truncate if needed */
+}
+
+.miuix-basic-component-title {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--miuix-color-on-background);
+}
+
+.miuix-basic-component-summary {
+  font-size: 14px;
+  color: var(--miuix-color-on-surface-variant-summary);
+  margin-top: 2px;
+}
+
+.miuix-basic-component--disabled .miuix-basic-component-title,
+.miuix-basic-component--disabled .miuix-basic-component-summary {
+  color: var(--miuix-color-disabled-on-secondary-variant);
+}
+
+.miuix-basic-component-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 16px;
+}
+
+.miuix-basic-component-bottom {
+  margin-top: 8px;
+}

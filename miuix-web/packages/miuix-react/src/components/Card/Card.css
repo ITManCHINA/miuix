@@ -1,0 +1,29 @@
+.miuix-card {
+  position: relative;
+  background-color: var(--miuix-color-surface-container);
+  color: var(--miuix-color-on-surface-container);
+  border-radius: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.miuix-card--clickable {
+  cursor: pointer;
+}
+
+.miuix-card--feedback-sink:active {
+  transform: scale(0.95);
+}
+
+.miuix-card--feedback-tilt:active {
+  transform: scale(0.98) perspective(500px) rotateX(-2deg);
+}
+
+/* Optional generic hover state for cards with click handlers on desktop */
+@media (hover: hover) {
+  .miuix-card--clickable:hover {
+    background-color: var(--miuix-color-surface-container-high, rgba(0, 0, 0, 0.02));
+  }
+}

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet, Checkbox, RadioButton } from '@miuix/react';
+import { Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet, Checkbox, RadioButton, Card, LinearProgressIndicator, CircularProgressIndicator, InfiniteProgressIndicator, SwitchPreference, CheckboxPreference, RadioButtonPreference, ArrowPreference } from '@miuix/react';
 import '@miuix/theme/src/colors.css';
 import './App.css';
 
@@ -47,6 +47,50 @@ function App() {
             <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} />
             <Switch checked={true} enabled={false} />
           </div>
+        </div>
+
+        <div className="demo-section">
+          <h2>Progress Indicators</h2>
+          <Card>
+            <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <LinearProgressIndicator />
+              <LinearProgressIndicator progress={sliderValue} />
+              <div className="demo-row">
+                <CircularProgressIndicator />
+                <CircularProgressIndicator progress={sliderValue} />
+                <InfiniteProgressIndicator />
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <div className="demo-section">
+          <h2>Preferences</h2>
+          <Card pressFeedback="sink">
+            <SwitchPreference
+              title="Wi-Fi"
+              summary="Connect to Wi-Fi networks"
+              checked={switchChecked}
+              onCheckedChange={setSwitchChecked}
+            />
+            <CheckboxPreference
+              title="Sync Data"
+              summary="Automatically sync your data"
+              state={switchChecked ? 'On' : 'Off'}
+              onStateChange={(s) => setSwitchChecked(s === 'On')}
+            />
+            <RadioButtonPreference
+              title="High Quality"
+              summary="Stream at the highest quality"
+              selected={switchChecked}
+              onClick={() => setSwitchChecked(!switchChecked)}
+            />
+            <ArrowPreference
+              title="More Settings"
+              summary="Advanced configuration options"
+              onClick={() => alert('Clicked ArrowPreference')}
+            />
+          </Card>
         </div>
 
         <div className="demo-section">
