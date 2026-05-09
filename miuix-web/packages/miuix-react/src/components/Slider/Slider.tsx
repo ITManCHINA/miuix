@@ -74,7 +74,7 @@ export const Slider: React.FC<SliderProps> = ({
     updateValue(e.clientX);
   }, [isDragging, enabled, min, max, onValueChange]);
 
-  const handlePointerUp = useCallback((e: PointerEvent) => {
+  const handlePointerUp = useCallback(() => {
     if (isDragging) {
       setIsDragging(false);
     }
@@ -93,7 +93,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   useEffect(() => {
     const handleMove = (e: PointerEvent) => handlePointerMove(e);
-    const handleUp = (e: PointerEvent) => handlePointerUp(e);
+    const handleUp = () => handlePointerUp();
 
     if (isDragging) {
       window.addEventListener('pointermove', handleMove);
