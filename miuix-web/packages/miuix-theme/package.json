@@ -1,0 +1,9 @@
+{
+  "name": "@miuix/theme",
+  "version": "0.1.0",
+  "description": "Design tokens and CSS variables for Miuix Web",
+  "main": "src/index.css",
+  "files": [
+    "src"
+  ]
+}

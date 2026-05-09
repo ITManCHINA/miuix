@@ -1,0 +1,22 @@
+.miuix-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.miuix-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.miuix-button:disabled {
+  cursor: not-allowed;
+}
