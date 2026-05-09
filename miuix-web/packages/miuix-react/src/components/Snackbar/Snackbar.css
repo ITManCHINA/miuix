@@ -1,0 +1,56 @@
+.miuix-snackbar-portal {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + 80px); /* Avoid overlapping with NavigationBar */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.miuix-snackbar {
+  background-color: var(--miuix-color-on-surface);
+  color: var(--miuix-color-surface);
+  padding: 12px 24px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  
+  /* Initial state for animation */
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1), transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.miuix-snackbar--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.miuix-snackbar-message {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.miuix-snackbar-action {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--miuix-color-surface);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.miuix-snackbar-action:active {
+  opacity: 0.5;
+}

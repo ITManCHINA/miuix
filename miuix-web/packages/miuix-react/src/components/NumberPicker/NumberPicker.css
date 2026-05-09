@@ -1,0 +1,51 @@
+.miuix-number-picker {
+  position: relative;
+  overflow: hidden;
+  width: 80px;
+  background: transparent;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+}
+
+.miuix-number-picker-highlight {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: var(--miuix-color-surface-container);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.miuix-number-picker-scroll-container {
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  position: relative;
+  z-index: 2;
+}
+
+.miuix-number-picker-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.miuix-number-picker-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--miuix-color-on-surface-variant-summary);
+  cursor: pointer;
+  transition: font-size 0.2s, font-weight 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.miuix-number-picker-item--selected {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--miuix-color-primary);
+}

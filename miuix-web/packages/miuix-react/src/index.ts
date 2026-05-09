@@ -18,3 +18,8 @@ export * from './components/Surface/Surface';
 export * from './components/FloatingActionButton/FloatingActionButton';
 export * from './components/TopAppBar/TopAppBar';
 export * from './components/NavigationBar/NavigationBar';
+export * from './components/Snackbar/Snackbar';
+export * from './components/SearchBar/SearchBar';
+export * from './components/PullToRefresh/PullToRefresh';
+export * from './components/NumberPicker/NumberPicker';
+export * from './components/TabRow/TabRow';

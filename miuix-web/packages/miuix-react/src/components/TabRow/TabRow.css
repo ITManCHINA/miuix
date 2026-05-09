@@ -1,0 +1,83 @@
+.miuix-tab-row {
+  width: 100%;
+  position: relative;
+  background-color: var(--miuix-color-surface);
+}
+
+.miuix-tab-row--contour {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 13px; /* 8px + 5px padding */
+  background-color: var(--miuix-color-surface);
+}
+
+.miuix-tab-row-scroll-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  gap: 9px;
+  align-items: center;
+  height: 42px;
+}
+
+.miuix-tab-row--contour .miuix-tab-row-scroll-container {
+  gap: 5px;
+  height: 35px;
+}
+
+.miuix-tab-row-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.miuix-tab-row-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--miuix-color-surface-container);
+  border-radius: 12px;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.miuix-tab-row--contour .miuix-tab-row-indicator {
+  border-radius: 8px;
+}
+
+.miuix-tab-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  height: 100%;
+  min-width: 76px;
+  max-width: 98px;
+  flex: 1 0 auto;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--miuix-color-on-surface-variant-summary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 12px;
+  transition: color 0.2s ease;
+}
+
+.miuix-tab-row--contour .miuix-tab-item {
+  min-width: 62px;
+  max-width: 84px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.miuix-tab-item--selected {
+  font-weight: 600;
+  color: var(--miuix-color-on-background);
+}
