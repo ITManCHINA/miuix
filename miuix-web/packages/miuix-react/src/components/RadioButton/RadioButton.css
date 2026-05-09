@@ -1,0 +1,41 @@
+.miuix-radio-button {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.miuix-radio-button:active:not(.miuix-radio-button--disabled) {
+  transform: scale(0.85);
+}
+
+.miuix-radio-button--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.miuix-radio-button-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.miuix-radio-button-path {
+  stroke: var(--miuix-color-primary);
+  /* Path length is roughly 50. */
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  opacity: 0;
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.miuix-radio-button--selected .miuix-radio-button-path {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}

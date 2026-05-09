@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet } from '@miuix/react';
+import { Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet, Checkbox, RadioButton } from '@miuix/react';
 import '@miuix/theme/src/colors.css';
 import './App.css';
 
@@ -46,6 +46,18 @@ function App() {
           <div className="demo-row">
             <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} />
             <Switch checked={true} enabled={false} />
+          </div>
+        </div>
+
+        <div className="demo-section">
+          <h2>Checkbox & RadioButton</h2>
+          <div className="demo-row">
+            <Checkbox state={switchChecked ? 'On' : 'Off'} onStateChange={(s) => setSwitchChecked(s === 'On')} />
+            <Checkbox state="Indeterminate" />
+            <Checkbox state="On" enabled={false} />
+            <div style={{ width: 16 }} />
+            <RadioButton selected={switchChecked} onClick={() => setSwitchChecked(!switchChecked)} />
+            <RadioButton selected={true} enabled={false} />
           </div>
         </div>
 

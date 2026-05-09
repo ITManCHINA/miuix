@@ -1,0 +1,71 @@
+.miuix-checkbox {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.miuix-checkbox:active:not(.miuix-checkbox--disabled) {
+  transform: scale(0.85); /* SinkFeedback sinkAmount = 0.85f */
+}
+
+.miuix-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.miuix-checkbox-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--miuix-color-secondary);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.miuix-checkbox--on .miuix-checkbox-background,
+.miuix-checkbox--indeterminate .miuix-checkbox-background {
+  background-color: var(--miuix-color-primary);
+}
+
+.miuix-checkbox-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.miuix-checkbox-path {
+  stroke: var(--miuix-color-on-primary);
+  /* Total path length is approximately 22. 
+     We use stroke-dasharray to control the visible portion. */
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  opacity: 0;
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.miuix-checkbox--on .miuix-checkbox-path {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+/* For indeterminate state, we can simulate a dash or just draw a partial line. 
+   MIUIX seems to draw a line across the center or squish the checkmark. 
+   We will approximate it with a partial stroke-dashoffset or scale. */
+.miuix-checkbox--indeterminate .miuix-checkbox-path {
+  stroke-dashoffset: 14; /* Shows only the middle segment approx */
+  opacity: 1;
+  transform-origin: center;
+  transform: translateY(-2px) scaleY(0.5); 
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

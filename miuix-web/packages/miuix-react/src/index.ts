@@ -5,3 +5,5 @@ export * from './components/Slider/Slider';
 export * from './components/DropdownMenu/DropdownMenu';
 export * from './components/Dialog/Dialog';
 export * from './components/BottomSheet/BottomSheet';
+export * from './components/Checkbox/Checkbox';
+export * from './components/RadioButton/RadioButton';
