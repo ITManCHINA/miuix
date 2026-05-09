@@ -1,0 +1,44 @@
+.miuix-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  touch-action: none; /* Prevent scrolling while dragging */
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.miuix-slider--disabled {
+  cursor: not-allowed;
+}
+
+.miuix-slider-fill {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+}
+
+.miuix-slider-thumb {
+  position: absolute;
+  top: 50%;
+  margin-top: -14px; /* Half of thumb height (28px) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
+}
+
+/* Inner knob visual */
+.miuix-slider-thumb::after {
+  content: '';
+  display: block;
+  width: 72%; /* 0.72f of the thumb area */
+  height: 72%;
+  border-radius: 50%;
+  background-color: inherit;
+}
