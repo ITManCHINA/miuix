@@ -1,0 +1,96 @@
+.miuix-dropdown-menu-portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through to the backdrop or anchor when needed */
+  z-index: 1000;
+}
+
+.miuix-dropdown-menu-portal.visible {
+  pointer-events: auto;
+}
+
+.miuix-dropdown-menu {
+  position: absolute;
+  min-width: 200px;
+  max-width: 288px;
+  background-color: var(--miuix-color-surface-container);
+  border-radius: 16px;
+  padding: 8px 0;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px) saturate(1.5);
+  transform: scale(0.85);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.15s ease-out;
+  pointer-events: none;
+  overflow: hidden; /* For clip reveal effect */
+  display: flex;
+  flex-direction: column;
+}
+
+.miuix-dropdown-menu--expanded {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.miuix-dropdown-menu-content {
+  overflow-y: auto;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.miuix-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.miuix-dropdown-item:active:not(.miuix-dropdown-item--disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.miuix-dropdown-item--selected {
+  background-color: var(--miuix-color-surface-container);
+  /* The original miuix usually highlights the background or keeps it surface container and colors the text */
+}
+
+.miuix-dropdown-item--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.miuix-dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.miuix-dropdown-item-text {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--miuix-color-on-surface-container);
+}
+
+.miuix-dropdown-item-summary {
+  font-size: 13px;
+  color: var(--miuix-color-on-surface-variant-summary);
+}
+
+.miuix-dropdown-item--selected .miuix-dropdown-item-text,
+.miuix-dropdown-item--selected .miuix-dropdown-item-summary {
+  color: var(--miuix-color-primary);
+}
+
+.miuix-dropdown-item-check {
+  color: var(--miuix-color-primary);
+  margin-left: 12px;
+}

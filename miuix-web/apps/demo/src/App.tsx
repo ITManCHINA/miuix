@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, Switch, TextField, Slider } from '@miuix/react';
+import { useState, useRef } from 'react';
+import { Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet } from '@miuix/react';
 import '@miuix/theme/src/colors.css';
 import './App.css';
 
@@ -8,6 +8,12 @@ function App() {
   const [switchChecked, setSwitchChecked] = useState(false);
   const [text, setText] = useState('');
   const [sliderValue, setSliderValue] = useState(0.5);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownAnchorRef = useRef<HTMLButtonElement>(null);
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -76,7 +82,57 @@ function App() {
             />
           </div>
         </div>
+
+        <div className="demo-section">
+          <h2>Overlays & Popups</h2>
+          <div className="demo-row">
+            <div ref={dropdownAnchorRef as any}>
+              <Button onClick={() => setDropdownOpen(true)}>Dropdown</Button>
+            </div>
+            <Button onClick={() => setDialogOpen(true)}>Dialog</Button>
+            <Button onClick={() => setBottomSheetOpen(true)}>BottomSheet</Button>
+          </div>
+        </div>
       </div>
+
+      <DropdownMenu 
+        expanded={dropdownOpen} 
+        onDismissRequest={() => setDropdownOpen(false)} 
+        anchorRef={dropdownAnchorRef as any}
+      >
+        <DropdownItem text="Option 1" summary="This is a summary" selected />
+        <DropdownItem text="Option 2" />
+        <DropdownItem text="Disabled Option" enabled={false} />
+      </DropdownMenu>
+
+      <Dialog
+        show={dialogOpen}
+        onDismissRequest={() => setDialogOpen(false)}
+        title="Miuix Dialog"
+        summary="This is a beautiful center dialog replicated from Compose"
+      >
+        <div style={{ padding: '0 12px 12px', textAlign: 'center', color: 'var(--miuix-color-on-surface-secondary)' }}>
+          You can put any custom content here.
+        </div>
+        <div className="demo-row" style={{ justifyContent: 'center' }}>
+          <Button onClick={() => setDialogOpen(false)}>Close</Button>
+        </div>
+      </Dialog>
+
+      <BottomSheet
+        show={bottomSheetOpen}
+        onDismissRequest={() => setBottomSheetOpen(false)}
+        title="Miuix BottomSheet"
+        summary="Swipe down to dismiss"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px 0' }}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} style={{ padding: '12px', backgroundColor: 'var(--miuix-color-surface-container)', borderRadius: '12px' }}>
+              List item {i + 1}
+            </div>
+          ))}
+        </div>
+      </BottomSheet>
     </div>
   );
 }
