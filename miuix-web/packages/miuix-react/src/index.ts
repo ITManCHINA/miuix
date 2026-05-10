@@ -12,6 +12,8 @@ export * from './components/Preference/ArrowPreference';
 export * from './components/Preference/SwitchPreference';
 export * from './components/Preference/CheckboxPreference';
 export * from './components/Preference/RadioButtonPreference';
+export * from './components/Preference/DropdownPreference';
+export * from './components/Preference/SpinnerPreference';
 export * from './components/Card/Card';
 export * from './components/ProgressIndicator/ProgressIndicator';
 export * from './components/Surface/Surface';

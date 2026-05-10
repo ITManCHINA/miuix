@@ -3,7 +3,7 @@ import {
   Button, Switch, TextField, Slider, DropdownMenu, DropdownItem, Dialog, BottomSheet, 
   Checkbox, RadioButton, Card, LinearProgressIndicator, CircularProgressIndicator, 
   InfiniteProgressIndicator, SwitchPreference, CheckboxPreference, RadioButtonPreference, 
-  ArrowPreference, Surface, FloatingActionButton, TopAppBar, NavigationBar, NavigationBarItem,
+  ArrowPreference, DropdownPreference, SpinnerPreference, Surface, FloatingActionButton, TopAppBar, NavigationBar, NavigationBarItem,
   Snackbar, SearchBar, PullToRefresh, NumberPicker, TabRow
 } from '@miuix/react';
 import '@miuix/theme/src/colors.css';
@@ -133,6 +133,21 @@ function App() {
                 title="More Settings"
                 summary="Advanced configuration options"
                 onClick={() => alert('Clicked ArrowPreference')}
+              />
+              <DropdownPreference
+                title="Resolution"
+                summary="Select video resolution"
+                items={['1080p', '2K', '4K']}
+                selectedIndex={selectedTab} // reusing a state for demo
+                onSelectedIndexChange={setSelectedTab}
+              />
+              <SpinnerPreference
+                title="Playback Speed"
+                summary="Adjust video playback speed"
+                dialogTitle="Select Speed"
+                items={['0.5x', '1.0x', '1.5x', '2.0x']}
+                selectedIndex={selectedTab} // reusing a state for demo
+                onSelectedIndexChange={setSelectedTab}
               />
             </Card>
           </div>

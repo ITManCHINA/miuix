@@ -51,7 +51,7 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
 
   return (
     <div 
-      className={`miuix-top-app-bar ${className}`}
+      className={`miuix-top-app-bar ${scrollProgress >= 1 ? 'miuix-top-app-bar--collapsed' : ''} ${className}`}
       style={style}
     >
       <div className="miuix-top-app-bar-top-row">
