@@ -3,12 +3,11 @@ import { AppStateProvider } from './contexts/AppStateContext';
 import { NavigatorProvider, useNavigator } from './contexts/NavigatorContext';
 import { NavDisplay } from './components/NavDisplay';
 import { MainShell } from './components/MainShell';
-// Placeholder for other pages
-const AboutPage = () => <div style={{ padding: 100 }}>About Page (WIP) <button onClick={() => window.dispatchEvent(new CustomEvent('popRoute'))}>Back</button></div>;
-const LicensePage = () => <div style={{ padding: 100 }}>License Page (WIP) <button onClick={() => window.dispatchEvent(new CustomEvent('popRoute'))}>Back</button></div>;
-const PullToRefreshPage = () => <div style={{ padding: 100 }}>PullToRefresh Test Page (WIP) <button onClick={() => window.dispatchEvent(new CustomEvent('popRoute'))}>Back</button></div>;
-const MultiScaffoldTestPage = () => <div style={{ padding: 100 }}>MultiScaffold Test Page (WIP) <button onClick={() => window.dispatchEvent(new CustomEvent('popRoute'))}>Back</button></div>;
-const NavigationTestPage = () => <div style={{ padding: 100 }}>Navigation Test Page (WIP) <button onClick={() => window.dispatchEvent(new CustomEvent('popRoute'))}>Back</button></div>;
+import { AboutPage } from './pages/AboutPage';
+import { LicensePage } from './pages/LicensePage';
+import { PullToRefreshPage } from './pages/PullToRefreshPage';
+import { MultiScaffoldTestPage } from './pages/MultiScaffoldTestPage';
+import { NavigationTestPage } from './pages/NavigationTestPage';
 
 const AppContent: React.FC = () => {
   const { current, pop } = useNavigator();
@@ -35,7 +34,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ width: '100vw', minHeight: '100vh', overflowX: 'hidden' }}>
       <NavDisplay>
         {renderRoute()}
       </NavDisplay>

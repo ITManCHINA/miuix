@@ -8,6 +8,7 @@ export interface DropdownMenuProps {
   anchorRef: React.RefObject<HTMLElement>;
   children: React.ReactNode;
   className?: string;
+  align?: 'left' | 'right' | 'center';
 }
 
 export const DropdownMenu: React.FC<DropdownMenuProps> = ({
@@ -16,48 +17,64 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   anchorRef,
   children,
   className = '',
+  align = 'left',
 }) => {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ top: 0, left: 0, transformOrigin: 'top left' });
+  const [position, setPosition] = useState<{ top: number; left?: number; right?: number; transformOrigin: string }>({ top: 0, left: 0, transformOrigin: 'top left' });
 
   useEffect(() => {
     if (expanded) {
       setMounted(true);
-      // Give React a tick to mount the DOM node so we can calculate positions
-      requestAnimationFrame(() => {
-        updatePosition();
-        requestAnimationFrame(() => setVisible(true));
-      });
     } else {
+      // Force reflow for animation
+      if (menuRef.current) void menuRef.current.offsetHeight;
       setVisible(false);
       const timer = setTimeout(() => setMounted(false), 200); // Wait for exit animation
       return () => clearTimeout(timer);
     }
   }, [expanded]);
 
+  useEffect(() => {
+    if (mounted && expanded && !visible) {
+      updatePosition();
+      // Force reflow
+      if (menuRef.current) void menuRef.current.offsetHeight;
+      // Trigger animation
+      requestAnimationFrame(() => setVisible(true));
+    }
+  }, [mounted, expanded, visible]);
+
   const updatePosition = () => {
     if (!anchorRef.current || !menuRef.current) return;
     const anchorRect = anchorRef.current.getBoundingClientRect();
-    const menuRect = menuRef.current.getBoundingClientRect();
 
     const margin = 8;
     let top = anchorRect.bottom + margin;
-    let left = anchorRect.left;
+    let left: number | undefined = anchorRect.left;
+    let right: number | undefined = undefined;
     let transformOrigin = 'top left';
 
-    // Basic collision detection
-    if (top + menuRect.height > window.innerHeight) {
-      top = anchorRect.top - menuRect.height - margin;
-      transformOrigin = 'bottom left';
-    }
-    if (left + menuRect.width > window.innerWidth) {
-      left = anchorRect.right - menuRect.width;
-      transformOrigin = top < anchorRect.top ? 'bottom right' : 'top right';
+    if (align === 'right') {
+      left = undefined;
+      right = window.innerWidth - anchorRect.right;
+      transformOrigin = 'top right';
+    } else if (align === 'center') {
+      const actualWidth = menuRef.current.offsetWidth || 160;
+      left = anchorRect.left + (anchorRect.width - actualWidth) / 2;
+      transformOrigin = 'top center';
     }
 
-    setPosition({ top, left, transformOrigin });
+    // Basic collision detection vertical
+    // Note: getBoundingClientRect height is affected by scale, so we use offsetHeight or just fallback to fixed size
+    const actualHeight = menuRef.current.offsetHeight || 200;
+    if (top + actualHeight > window.innerHeight) {
+      top = anchorRect.top - actualHeight - margin;
+      transformOrigin = transformOrigin.replace('top', 'bottom');
+    }
+
+    setPosition({ top, left, right, transformOrigin });
   };
 
   useEffect(() => {
@@ -87,7 +104,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         className={`miuix-dropdown-menu ${visible ? 'miuix-dropdown-menu--expanded' : ''} ${className}`}
         style={{
           top: position.top,
-          left: position.left,
+          left: position.left !== undefined ? position.left : undefined,
+          right: position.right !== undefined ? position.right : undefined,
           transformOrigin: position.transformOrigin,
         }}
       >

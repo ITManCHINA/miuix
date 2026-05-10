@@ -29,6 +29,8 @@ export * from './components/NumberPicker/NumberPicker';
 export * from './components/TabRow/TabRow';
 export * from './components/PageTransition/PageTransition';
 export * from './components/ColorPicker/ColorPicker';
+export * from './components/FloatingToolbar/FloatingToolbar';
+export * from './components/FloatingNavigationBar/FloatingNavigationBar';
 
 // Hooks
 export * from './hooks/useHapticFeedback';

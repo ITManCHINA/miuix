@@ -9,6 +9,7 @@ export interface BasicComponentProps {
   bottomAction?: React.ReactNode;
   onClick?: () => void;
   enabled?: boolean;
+  active?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -21,12 +22,13 @@ export const BasicComponent: React.FC<BasicComponentProps> = ({
   bottomAction,
   onClick,
   enabled = true,
+  active = false,
   className = '',
   style,
 }) => {
   return (
     <div
-      className={`miuix-basic-component ${onClick ? 'miuix-basic-component--clickable' : ''} ${!enabled ? 'miuix-basic-component--disabled' : ''} ${className}`}
+      className={`miuix-basic-component ${onClick ? 'miuix-basic-component--clickable' : ''} ${!enabled ? 'miuix-basic-component--disabled' : ''} ${active ? 'miuix-basic-component--active' : ''} ${className}`}
       onClick={() => {
         if (enabled && onClick) onClick();
       }}

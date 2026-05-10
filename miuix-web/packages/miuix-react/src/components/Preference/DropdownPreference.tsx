@@ -24,6 +24,7 @@ export const DropdownPreference: React.FC<DropdownPreferenceProps> = ({
       <div ref={anchorRef}>
         <BasicComponent
           {...props}
+          active={expanded}
           onClick={() => {
             if (props.enabled !== false) {
               setExpanded(true);
@@ -43,6 +44,7 @@ export const DropdownPreference: React.FC<DropdownPreferenceProps> = ({
         expanded={expanded}
         onDismissRequest={() => setExpanded(false)}
         anchorRef={anchorRef as React.RefObject<HTMLElement>}
+        align="left"
       >
         {items.map((item, index) => (
           <DropdownItem

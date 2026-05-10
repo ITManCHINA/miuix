@@ -10,7 +10,6 @@ import {
 import { useAppState } from '../contexts/AppStateContext';
 import { useNavigator } from '../contexts/NavigatorContext';
 
-const NavigationBarDisplayModeOptions = ['IconAndText', 'IconOnly', 'TextOnly', 'IconWithSelectedLabel'];
 const NavigationRailDisplayModeOptions = ['IconAndText', 'IconOnly', 'TextOnly', 'IconWithSelectedLabel'];
 const FloatingToolbarPositionOptions = ['TopStart', 'CenterStart', 'BottomStart', 'TopEnd', 'CenterEnd', 'BottomEnd', 'TopCenter', 'BottomCenter'];
 const FloatingToolbarOrientationOptions = ['Horizontal', 'Vertical'];
@@ -30,8 +29,7 @@ export const SettingsPage: React.FC = () => {
         scrollBehavior="auto"
       />
       <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div className="demo-section">
-          <SmallTitle text="Settings UI" />
+        <div>
           <Card>
             <SwitchPreference
               title="Show FPS Monitor"
@@ -54,20 +52,12 @@ export const SettingsPage: React.FC = () => {
               onCheckedChange={(checked) => updateAppState(s => ({ ...s, showNavigationBar: checked }))}
             />
             {appState.showNavigationBar && (
-              <>
-                <DropdownPreference
-                  title="NavigationBar Mode"
-                  items={NavigationBarDisplayModeOptions}
-                  selectedIndex={appState.navigationBarMode}
-                  onSelectedIndexChange={(i) => updateAppState(s => ({ ...s, navigationBarMode: i }))}
-                />
-                <DropdownPreference
-                  title="NavigationRail Mode"
-                  items={NavigationRailDisplayModeOptions}
-                  selectedIndex={appState.navigationRailMode}
-                  onSelectedIndexChange={(i) => updateAppState(s => ({ ...s, navigationRailMode: i }))}
-                />
-              </>
+              <DropdownPreference
+                title="NavigationRail Mode"
+                items={NavigationRailDisplayModeOptions}
+                selectedIndex={appState.navigationRailMode}
+                onSelectedIndexChange={(i) => updateAppState(s => ({ ...s, navigationRailMode: i }))}
+              />
             )}
             <SwitchPreference
               title="Show FloatingToolbar"
@@ -110,10 +100,8 @@ export const SettingsPage: React.FC = () => {
               onSelectedIndexChange={(i) => updateAppState(s => ({ ...s, colorMode: i }))}
             />
           </Card>
-        </div>
 
-        <div className="demo-section">
-          <SmallTitle text="Settings Transition" />
+
           <Card>
             <SwitchPreference
               title="Enable Corner Clip"
@@ -140,10 +128,8 @@ export const SettingsPage: React.FC = () => {
               onCheckedChange={(checked) => updateAppState(s => ({ ...s, popDirectionFollowsSwipeEdge: checked }))}
             />
           </Card>
-        </div>
 
-        <div className="demo-section">
-          <SmallTitle text="Settings About" />
+
           <Card>
             <ArrowPreference
               title="About"
@@ -151,7 +137,7 @@ export const SettingsPage: React.FC = () => {
               onClick={() => push('About')}
             />
           </Card>
-        </div>
+
       </div>
     </div>
   );

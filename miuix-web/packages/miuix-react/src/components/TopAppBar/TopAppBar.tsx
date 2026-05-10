@@ -7,6 +7,7 @@ export interface TopAppBarProps {
   subtitle?: string;
   navigationIcon?: React.ReactNode;
   actions?: React.ReactNode;
+  onBackClick?: () => void;
   scrollBehavior?: 'pinned' | 'auto'; // 'auto' will listen to scroll
   className?: string;
   style?: React.CSSProperties;
@@ -18,6 +19,7 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   subtitle,
   navigationIcon,
   actions,
+  onBackClick,
   scrollBehavior = 'auto',
   className = '',
   style,
@@ -74,9 +76,18 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
       />
       
       <div className="miuix-top-app-bar-top-row">
-        {navigationIcon && (
-          <div className="miuix-top-app-bar-nav-icon">
-            {navigationIcon}
+        {(navigationIcon || onBackClick) && (
+          <div 
+            className="miuix-top-app-bar-nav-icon"
+            onClick={onBackClick}
+            style={onBackClick ? { cursor: 'pointer' } : {}}
+          >
+            {navigationIcon || (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            )}
           </div>
         )}
         <div 

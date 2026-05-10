@@ -6,6 +6,7 @@
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
+  background-color: var(--miuix-color-surface-container);
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
@@ -14,8 +15,9 @@
   cursor: pointer;
 }
 
-.miuix-basic-component--clickable:active:not(.miuix-basic-component--disabled) {
-  background-color: rgba(0, 0, 0, 0.05); /* Sink/press effect simulation */
+.miuix-basic-component--clickable:active:not(.miuix-basic-component--disabled),
+.miuix-basic-component--active {
+  background-color: var(--miuix-color-surface-container-high, rgba(0, 0, 0, 0.05));
 }
 
 .miuix-basic-component--disabled {

@@ -1,0 +1,60 @@
+.miuix-floating-toolbar {
+  position: absolute;
+  background-color: var(--miuix-color-primary, #3482FF);
+  color: var(--miuix-color-on-primary, #FFFFFF);
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 8px 24px rgba(52, 130, 255, 0.4);
+  z-index: 100;
+  pointer-events: auto;
+  gap: 8px;
+  padding: 8px;
+  animation: miuix-scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.miuix-floating-toolbar--horizontal {
+  flex-direction: row;
+}
+
+.miuix-floating-toolbar--vertical {
+  flex-direction: column;
+}
+
+/* Positions */
+.miuix-floating-toolbar--topstart { top: 24px; left: 24px; }
+.miuix-floating-toolbar--centerstart { top: 50%; left: 24px; transform: translateY(-50%); }
+.miuix-floating-toolbar--bottomstart { bottom: 24px; left: 24px; }
+
+.miuix-floating-toolbar--topend { top: 24px; right: 24px; }
+.miuix-floating-toolbar--centerend { top: 50%; right: 24px; transform: translateY(-50%); }
+.miuix-floating-toolbar--bottomend { bottom: 24px; right: 24px; }
+
+.miuix-floating-toolbar--topcenter { top: 24px; left: 50%; transform: translateX(-50%); }
+.miuix-floating-toolbar--bottomcenter { bottom: 24px; left: 50%; transform: translateX(-50%); }
+
+@keyframes miuix-scale-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.miuix-floating-toolbar--centerstart {
+  animation: miuix-scale-in-cy 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.miuix-floating-toolbar--centerend {
+  animation: miuix-scale-in-cy 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.miuix-floating-toolbar--topcenter {
+  animation: miuix-scale-in-cx 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.miuix-floating-toolbar--bottomcenter {
+  animation: miuix-scale-in-cx 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes miuix-scale-in-cy {
+  from { opacity: 0; transform: translateY(-50%) scale(0.8); }
+  to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+@keyframes miuix-scale-in-cx {
+  from { opacity: 0; transform: translateX(-50%) scale(0.8); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
+}

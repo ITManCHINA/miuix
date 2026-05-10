@@ -29,11 +29,11 @@
   --miuix-color-tertiary-container: #EAF2FF;
   --miuix-color-on-tertiary-container: #3482FF;
   --miuix-color-tertiary-container-variant: #EAF2FF;
-  --miuix-color-background: #FFFFFF;
+  --miuix-color-background: #F2F2F2;
   --miuix-color-background-transparent: rgba(255, 255, 255, 0.75);
   --miuix-color-on-background: #000000;
   --miuix-color-on-background-variant: #8C93B0;
-  --miuix-color-surface: #F7F7F7;
+  --miuix-color-surface: #F2F2F2;
   --miuix-color-surface-transparent: rgba(247, 247, 247, 0.75);
   --miuix-color-on-surface: #000000;
   --miuix-color-surface-variant: #FFFFFF;
@@ -87,7 +87,7 @@
   --miuix-color-tertiary-container: #2B3B54;
   --miuix-color-on-tertiary-container: #4788ff;
   --miuix-color-tertiary-container-variant: #505050;
-  --miuix-color-background: #242424;
+  --miuix-color-background: #000000;
   --miuix-color-background-transparent: rgba(36, 36, 36, 0.75);
   --miuix-color-on-background: rgba(255, 255, 255, 0.9);
   --miuix-color-on-background-variant: #787E96;
@@ -100,7 +100,7 @@
   --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.5);
   --miuix-color-on-surface-variant-actions: rgba(255, 255, 255, 0.4);
   --miuix-color-disabled-on-surface: #666666;
-  --miuix-color-surface-container: #242424;
+  --miuix-color-surface-container: #1C1C1C;
   --miuix-color-on-surface-container: rgba(255, 255, 255, 0.9);
   --miuix-color-on-surface-container-variant: #737373;
   --miuix-color-surface-container-high: #242424;
@@ -146,7 +146,7 @@
     --miuix-color-tertiary-container: #2B3B54;
     --miuix-color-on-tertiary-container: #4788ff;
     --miuix-color-tertiary-container-variant: #505050;
-    --miuix-color-background: #242424;
+    --miuix-color-background: #000000;
     --miuix-color-background-transparent: rgba(36, 36, 36, 0.75);
     --miuix-color-on-background: rgba(255, 255, 255, 0.9);
     --miuix-color-on-background-variant: #787E96;
@@ -159,7 +159,7 @@
     --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.5);
     --miuix-color-on-surface-variant-actions: rgba(255, 255, 255, 0.4);
     --miuix-color-disabled-on-surface: #666666;
-    --miuix-color-surface-container: #242424;
+    --miuix-color-surface-container: #1C1C1C;
     --miuix-color-on-surface-container: rgba(255, 255, 255, 0.9);
     --miuix-color-on-surface-container-variant: #737373;
     --miuix-color-surface-container-high: #242424;
