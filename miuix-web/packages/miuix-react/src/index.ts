@@ -26,9 +26,13 @@ export * from './components/PullToRefresh/PullToRefresh';
 export * from './components/NumberPicker/NumberPicker';
 export * from './components/TabRow/TabRow';
 export * from './components/PageTransition/PageTransition';
+export * from './components/ColorPicker/ColorPicker';
 
 // Hooks
 export * from './hooks/useHapticFeedback';
+
+// Utils
+export * from './utils/colorUtils';
 
 // Icons
 export * from './components/Icons';

@@ -4,7 +4,7 @@ import {
   Checkbox, RadioButton, Card, LinearProgressIndicator, CircularProgressIndicator, 
   InfiniteProgressIndicator, SwitchPreference, CheckboxPreference, RadioButtonPreference, 
   ArrowPreference, DropdownPreference, SpinnerPreference, Surface, FloatingActionButton, TopAppBar, NavigationBar, NavigationBarItem,
-  Snackbar, SearchBar, PullToRefresh, NumberPicker, TabRow
+  Snackbar, SearchBar, PullToRefresh, NumberPicker, TabRow, ColorPicker
 } from '@miuix/react';
 import '@miuix/theme/src/colors.css';
 import './App.css';
@@ -149,6 +149,19 @@ function App() {
                 selectedIndex={selectedTab} // reusing a state for demo
                 onSelectedIndexChange={setSelectedTab}
               />
+            </Card>
+          </div>
+
+          <div className="demo-section">
+            <h2>Color Picker</h2>
+            <Card>
+              <div style={{ padding: 24 }}>
+                <ColorPicker 
+                  color={{r: 1, g: 0, b: 0, a: 1}} 
+                  onColorChange={(c) => console.log('Color changed:', c)} 
+                  showAlpha={true}
+                />
+              </div>
             </Card>
           </div>
 

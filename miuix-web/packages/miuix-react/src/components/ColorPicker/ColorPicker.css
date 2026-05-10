@@ -1,0 +1,132 @@
+.miuix-color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.miuix-color-picker-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.miuix-color-picker-box-white,
+.miuix-color-picker-box-black {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.miuix-color-picker-box-white {
+  background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
+}
+
+.miuix-color-picker-box-black {
+  background: linear-gradient(to bottom, transparent 0%, #000 100%);
+}
+
+.miuix-color-picker-thumb {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.miuix-color-picker-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.miuix-color-picker-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid var(--miuix-color-surface-container-high);
+  flex-shrink: 0;
+  background-image: conic-gradient(
+    #ccc 25%, white 25%, white 50%, 
+    #ccc 50%, #ccc 75%, white 75%, white 100%
+  );
+  background-size: 16px 16px;
+  box-shadow: inset 0 0 0 100px var(--current-color, transparent);
+}
+
+.miuix-color-picker-sliders {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Custom tracks for sliders inside ColorPicker */
+.miuix-color-picker-hue-track {
+  position: relative;
+  width: 100%;
+}
+
+.miuix-color-picker-hue-track::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 32px;
+  transform: translateY(-50%);
+  border-radius: 16px;
+  background: linear-gradient(to right, 
+    #f00 0%, #ff0 17%, #0f0 33%, 
+    #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  pointer-events: none;
+}
+
+/* Make inner slider background transparent to show gradient */
+.miuix-color-picker-hue-track .miuix-slider-track {
+  background: transparent !important;
+  height: 32px;
+}
+.miuix-color-picker-hue-track .miuix-slider-fill {
+  background: transparent !important;
+}
+
+.miuix-color-picker-alpha-track {
+  position: relative;
+  width: 100%;
+}
+
+.miuix-color-picker-alpha-track::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 32px;
+  transform: translateY(-50%);
+  border-radius: 16px;
+  background-image: 
+    linear-gradient(to right, transparent, var(--current-color, #000)),
+    conic-gradient(#ccc 25%, white 25%, white 50%, #ccc 50%, #ccc 75%, white 75%, white 100%);
+  background-size: 100% 100%, 16px 16px;
+  pointer-events: none;
+}
+
+.miuix-color-picker-alpha-track .miuix-slider-track {
+  background: transparent !important;
+  height: 32px;
+}
+.miuix-color-picker-alpha-track .miuix-slider-fill {
+  background: transparent !important;
+}
