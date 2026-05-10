@@ -49,9 +49,9 @@ export const PullToRefresh: React.FC<PullToRefreshProps> = ({
   const handleTouchStart = (e: React.TouchEvent) => {
     if (internalState === 'refreshing' || internalState === 'complete') return;
     
-    // Check if we are at the top of the scroll container
-    if (containerRef.current) {
-      isAtTop.current = containerRef.current.scrollTop <= 0;
+    // Check if we are at the top of the window
+    if (typeof window !== 'undefined') {
+      isAtTop.current = window.scrollY <= 0;
     }
     
     if (isAtTop.current) {

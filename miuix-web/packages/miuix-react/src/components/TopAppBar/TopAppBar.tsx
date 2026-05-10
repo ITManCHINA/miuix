@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './TopAppBar.css';
 
 export interface TopAppBarProps {
@@ -7,7 +7,7 @@ export interface TopAppBarProps {
   subtitle?: string;
   navigationIcon?: React.ReactNode;
   actions?: React.ReactNode;
-  scrollBehavior?: 'pinned' | 'auto'; // 'auto' will listen to window scroll
+  scrollBehavior?: 'pinned' | 'auto'; // 'auto' will listen to scroll
   className?: string;
   style?: React.CSSProperties;
 }
@@ -23,6 +23,7 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   style,
 }) => {
   const [scrollY, setScrollY] = useState(0);
+  const appBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollBehavior !== 'auto') return;
@@ -32,32 +33,52 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollBehavior]);
 
   const displayLargeTitle = largeTitle || title;
   
-  // Max scroll distance to collapse
-  const maxScroll = 60;
+  // Calculate dynamic heights and opacities based on scroll
+  const maxScroll = 50; 
   const scrollProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+  
+  // Backdrop blur alpha (0 to 1 as we scroll)
+  const backdropAlpha = scrollProgress;
 
-  // Small title fades in, translates up
+  // Small title fades in and translates up slightly
   const smallTitleAlpha = scrollProgress;
-  const smallTitleTranslateY = 20 * (1 - scrollProgress);
+  const smallTitleTranslateY = 15 * (1 - scrollProgress);
 
-  // Large title fades out
-  const largeTitleAlpha = 1 - scrollProgress;
-  const largeTitleTranslateY = -scrollY;
+  // Large title shrinks and fades out slightly, but its container height reduces
+  const largeTitleAlpha = 1 - (scrollProgress * 0.3);
+  const largeTitleScale = 1 - (scrollProgress * 0.1);
+  
+  // Base height is 52px (top row) + approx 60px (large title area)
+  // We reduce the height of the large title area as we scroll down
+  const largeContainerHeight = 60 * (1 - scrollProgress);
 
   return (
     <div 
-      className={`miuix-top-app-bar ${scrollProgress >= 1 ? 'miuix-top-app-bar--collapsed' : ''} ${className}`}
-      style={style}
+      ref={appBarRef}
+      className={`miuix-top-app-bar ${className}`}
+      style={{
+        ...style,
+        backgroundColor: scrollProgress > 0 ? 'transparent' : 'var(--miuix-color-background, #F2F2F2)'
+      }}
     >
+      <div 
+        className="miuix-top-app-bar-backdrop" 
+        style={{ opacity: backdropAlpha }}
+      />
+      
       <div className="miuix-top-app-bar-top-row">
-        <div className="miuix-top-app-bar-nav-icon">
-          {navigationIcon}
-        </div>
+        {navigationIcon && (
+          <div className="miuix-top-app-bar-nav-icon">
+            {navigationIcon}
+          </div>
+        )}
         <div 
           className="miuix-top-app-bar-small-title-container"
           style={{
@@ -76,9 +97,11 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
       <div 
         className="miuix-top-app-bar-large-title-container"
         style={{
+          height: `${largeContainerHeight}px`,
           opacity: largeTitleAlpha,
-          transform: `translateY(${largeTitleTranslateY}px)`,
-          pointerEvents: largeTitleAlpha > 0 ? 'auto' : 'none'
+          transform: `scale(${largeTitleScale})`,
+          pointerEvents: scrollProgress > 0.5 ? 'none' : 'auto',
+          overflow: 'hidden'
         }}
       >
         <div className="miuix-top-app-bar-large-title">{displayLargeTitle}</div>

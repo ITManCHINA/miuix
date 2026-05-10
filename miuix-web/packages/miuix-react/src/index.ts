@@ -8,6 +8,7 @@ export * from './components/BottomSheet/BottomSheet';
 export * from './components/Checkbox/Checkbox';
 export * from './components/RadioButton/RadioButton';
 export * from './components/BasicComponent/BasicComponent';
+export * from './components/BasicComponent/SmallTitle';
 export * from './components/Preference/ArrowPreference';
 export * from './components/Preference/SwitchPreference';
 export * from './components/Preference/CheckboxPreference';
