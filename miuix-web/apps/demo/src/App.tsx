@@ -17,6 +17,8 @@ function App() {
   const [pickerValue, setPickerValue] = useState(5);
   const [selectedTab, setSelectedTab] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [pickerColor, setPickerColor] = useState({ r: 1, g: 0, b: 0, a: 1 });
+  const [colorSpace, setColorSpace] = useState('HSV');
   
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -155,11 +157,21 @@ function App() {
           <div className="demo-section">
             <h2>Color Picker</h2>
             <Card>
+              <div style={{ padding: '24px 24px 0 24px' }}>
+                <DropdownPreference
+                  title="Color Space"
+                  summary="Select the color model for the picker"
+                  items={['HSV', 'OkLCH', 'OkLab']}
+                  selectedIndex={['HSV', 'OkLCH', 'OkLab'].indexOf(colorSpace)}
+                  onSelectedIndexChange={(i) => setColorSpace(['HSV', 'OkLCH', 'OkLab'][i])}
+                />
+              </div>
               <div style={{ padding: 24 }}>
                 <ColorPicker 
-                  color={{r: 1, g: 0, b: 0, a: 1}} 
-                  onColorChange={(c) => console.log('Color changed:', c)} 
+                  color={pickerColor} 
+                  onColorChange={setPickerColor} 
                   showAlpha={true}
+                  colorSpace={colorSpace as any}
                 />
               </div>
             </Card>
