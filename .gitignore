@@ -44,3 +44,6 @@ docs/public/compose
 docs/public/icons
 miuix-ui/**/generated/baselineProfiles/**
 example/ios/iosApp/Generated.xcconfig
+/miuix-web/apps/demo/node_modules/@miuix/react/src/components/Preference/DropdownPreference.tsx
+/miuix-web/apps/demo/node_modules/@miuix/react/src/components/Preference/SpinnerPreference.tsx
+/miuix-web/apps/demo/node_modules/@miuix/react/src/components/Preference/DropdownPreference.tsx
