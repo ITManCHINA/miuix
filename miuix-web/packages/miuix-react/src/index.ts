@@ -25,3 +25,10 @@ export * from './components/SearchBar/SearchBar';
 export * from './components/PullToRefresh/PullToRefresh';
 export * from './components/NumberPicker/NumberPicker';
 export * from './components/TabRow/TabRow';
+export * from './components/PageTransition/PageTransition';
+
+// Hooks
+export * from './hooks/useHapticFeedback';
+
+// Icons
+export * from './components/Icons';

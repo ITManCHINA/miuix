@@ -1,0 +1,100 @@
+.miuix-page-transition {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  background-color: var(--miuix-color-background);
+}
+
+/* Slide Left (Push new page) */
+.miuix-transition-slide-left.miuix-transition--enter {
+  transform: translateX(100%);
+  opacity: 0.5;
+}
+.miuix-transition-slide-left.miuix-transition--entering {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
+.miuix-transition-slide-left.miuix-transition--entered {
+  transform: translateX(0);
+  opacity: 1;
+}
+.miuix-transition-slide-left.miuix-transition--exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+.miuix-transition-slide-left.miuix-transition--exiting {
+  transform: translateX(-30%);
+  opacity: 0.5;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
+
+/* Slide Right (Pop current page) */
+.miuix-transition-slide-right.miuix-transition--enter {
+  transform: translateX(-30%);
+  opacity: 0.5;
+}
+.miuix-transition-slide-right.miuix-transition--entering {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
+.miuix-transition-slide-right.miuix-transition--entered {
+  transform: translateX(0);
+  opacity: 1;
+}
+.miuix-transition-slide-right.miuix-transition--exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+.miuix-transition-slide-right.miuix-transition--exiting {
+  transform: translateX(100%);
+  opacity: 0.5;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
+
+/* Fade */
+.miuix-transition-fade.miuix-transition--enter {
+  opacity: 0;
+}
+.miuix-transition-fade.miuix-transition--entering {
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+}
+.miuix-transition-fade.miuix-transition--entered {
+  opacity: 1;
+}
+.miuix-transition-fade.miuix-transition--exit {
+  opacity: 1;
+}
+.miuix-transition-fade.miuix-transition--exiting {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+/* Zoom */
+.miuix-transition-zoom.miuix-transition--enter {
+  transform: scale(0.9);
+  opacity: 0;
+}
+.miuix-transition-zoom.miuix-transition--entering {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
+.miuix-transition-zoom.miuix-transition--entered {
+  transform: scale(1);
+  opacity: 1;
+}
+.miuix-transition-zoom.miuix-transition--exit {
+  transform: scale(1);
+  opacity: 1;
+}
+.miuix-transition-zoom.miuix-transition--exiting {
+  transform: scale(1.1);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
+}
