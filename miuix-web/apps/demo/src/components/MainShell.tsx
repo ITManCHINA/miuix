@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  PullToRefresh, 
-  NavigationBar, 
-  NavigationBarItem, 
+import {
+  PullToRefresh,
+  NavigationBar,
+  NavigationBarItem,
   NavigationRail,
   NavigationRailItem,
   Snackbar,
@@ -13,10 +13,12 @@ import {
   SettingsIcon,
   EditIcon,
   DeleteIcon,
+  MoreIcon,
   LinkIcon,
   HorizontalSplitIcon,
   CreateIcon,
-  ImageIcon
+  ImageIcon,
+  BgEffectBackground,
 } from '@miuix/react';
 import { MainPage } from '../pages/MainPage';
 import { ColorPage } from '../pages/ColorPage';
@@ -27,7 +29,10 @@ import { FPSMonitor } from './FPSMonitor';
 import { useAppState } from '../contexts/AppStateContext';
 
 function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState(() => {
+    if (typeof window !== 'undefined') return window.matchMedia(query).matches;
+    return false;
+  });
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(query);
@@ -46,6 +51,14 @@ export const MainShell: React.FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const isWideScreen = useMediaQuery('(min-aspect-ratio: 1/1)');
+
+  useEffect(() => {
+    if (!appState.enableBlur) {
+      document.body.classList.add('miuix-blur-disabled');
+    } else {
+      document.body.classList.remove('miuix-blur-disabled');
+    }
+  }, [appState.enableBlur]);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
@@ -74,69 +87,94 @@ export const MainShell: React.FC = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', width: '100%', flexDirection: 'row' }}>
-      {/* 桌面端/宽屏：左侧 NavigationRail */}
+    <div style={{
+      display: 'flex',
+      height: '100vh',
+      width: '100%',
+      flexDirection: 'row',
+      overflow: 'hidden',
+      backgroundColor: 'var(--miuix-color-surface)',
+    }}>
+      {/* Wide screen: left NavigationRail */}
       {isWideScreen && appState.showNavigationBar && (
         <NavigationRail mode={['IconAndText', 'IconOnly', 'TextOnly', 'IconWithSelectedLabel'][appState.navigationRailMode] as any}>
           {navItems.map((item, index) => (
-            <NavigationRailItem 
+            <NavigationRailItem
               key={index}
-              selected={currentTab === index} 
-              onClick={() => setCurrentTab(index)} 
-              label={item.label} 
-              icon={item.icon} 
+              selected={currentTab === index}
+              onClick={() => setCurrentTab(index)}
+              label={item.label}
+              icon={item.icon}
             />
           ))}
         </NavigationRail>
       )}
 
-      {/* 主内容区域 */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: isWideScreen && appState.showNavigationBar ? 'calc(100% - 80px)' : '100%', position: 'relative' }}>
+      {/* Main content area — scrollable */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        position: 'relative',
+        backgroundColor: appState.dynamicBackground ? 'transparent' : 'var(--miuix-color-surface)',
+      }}>
+        {appState.dynamicBackground && (
+          <BgEffectBackground
+            dynamicBackground={true}
+            isOs3Effect={appState.isOs3Effect}
+            isDarkTheme={document.documentElement.getAttribute('data-theme') === 'dark' || appState.colorMode === 2}
+            deviceType={isWideScreen ? 'PAD' : 'PHONE'}
+            alpha={0.85}
+          />
+        )}
         <PullToRefresh isRefreshing={isRefreshing} onRefresh={handleRefresh}>
-          <div style={{ paddingBottom: (!isWideScreen && appState.showNavigationBar) ? 80 : 0, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ paddingBottom: (!isWideScreen && appState.showNavigationBar) ? 80 : 0, minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ flex: 1, position: 'relative' }}>
               <PageTransition key={currentTab} in={true} animation="fade">
                 {renderContent()}
               </PageTransition>
             </div>
 
-            {/* 移动端/窄屏：底部 NavigationBar */}
+            {/* Mobile/narrow: bottom NavigationBar */}
             {!isWideScreen && appState.showNavigationBar && !appState.useFloatingNavigationBar && (
               <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', zIndex: 50 }}>
                 <NavigationBar mode="IconWithSelectedLabel">
                   {navItems.map((item, index) => (
-                    <NavigationBarItem 
+                    <NavigationBarItem
                       key={index}
-                      selected={currentTab === index} 
-                      onClick={() => setCurrentTab(index)} 
-                      label={item.label} 
-                      icon={item.icon} 
+                      selected={currentTab === index}
+                      onClick={() => setCurrentTab(index)}
+                      label={item.label}
+                      icon={item.icon}
                     />
                   ))}
                 </NavigationBar>
               </div>
             )}
 
-            {/* 悬浮导航栏 FloatingNavigationBar */}
+            {/* Floating NavigationBar */}
             {!isWideScreen && appState.showNavigationBar && appState.useFloatingNavigationBar && (
               <FloatingNavigationBar alignment={['center', 'start', 'end'][appState.floatingNavigationBarPosition] as any}>
                 <NavigationBar mode="IconWithSelectedLabel" showDivider={false}>
                   {navItems.map((item, index) => (
-                    <NavigationBarItem 
+                    <NavigationBarItem
                       key={index}
-                      selected={currentTab === index} 
-                      onClick={() => setCurrentTab(index)} 
-                      label={item.label} 
-                      icon={item.icon} 
+                      selected={currentTab === index}
+                      onClick={() => setCurrentTab(index)}
+                      label={item.label}
+                      icon={item.icon}
                     />
                   ))}
                 </NavigationBar>
               </FloatingNavigationBar>
             )}
 
-            {/* 悬浮工具栏 FloatingToolbar */}
+            {/* Floating Toolbar */}
             {appState.showFloatingToolbar && (
-              <FloatingToolbar 
+              <FloatingToolbar
                 position={['TopStart', 'CenterStart', 'BottomStart', 'TopEnd', 'CenterEnd', 'BottomEnd', 'TopCenter', 'BottomCenter'][appState.floatingToolbarPosition] as any}
                 orientation={['horizontal', 'vertical'][appState.floatingToolbarOrientation] as any}
               >
@@ -146,10 +184,10 @@ export const MainShell: React.FC = () => {
               </FloatingToolbar>
             )}
 
-            {/* 悬浮按钮 FloatingActionButton */}
+            {/* FloatingActionButton */}
             {appState.showFloatingActionButton && (
-              <div style={{ 
-                position: 'fixed', 
+              <div style={{
+                position: 'fixed',
                 zIndex: 90,
                 bottom: appState.floatingActionButtonPosition >= 2 ? 100 : undefined,
                 top: appState.floatingActionButtonPosition === 0 ? 100 : undefined,
@@ -164,12 +202,12 @@ export const MainShell: React.FC = () => {
               </div>
             )}
 
-            <Snackbar 
-              visible={snackbarVisible} 
-              message="Hello from Miuix Snackbar!" 
+            <Snackbar
+              visible={snackbarVisible}
+              message="Hello from Miuix Snackbar!"
               actionLabel="UNDO"
               onActionClick={() => alert('Undo clicked')}
-              onDismiss={() => setSnackbarVisible(false)} 
+              onDismiss={() => setSnackbarVisible(false)}
             />
           </div>
         </PullToRefresh>

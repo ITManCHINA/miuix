@@ -14,7 +14,7 @@ export const NavDisplay: React.FC<NavDisplayProps> = ({ children }) => {
   // For now, we just render the top of the stack and use PageTransition to fade/slide it in.
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
       <PageTransition key={currentRoute} in={true} animation="slide-left">
         {children}
       </PageTransition>

@@ -27,6 +27,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
         style={style}
         role="tablist"
       >
+        <div className="miuix-navigation-bar-backdrop" />
         {children}
       </div>
     </NavigationBarContext.Provider>

@@ -1,3 +1,4 @@
+/* Light theme — matches lightColorScheme() in Colors.kt */
 :root {
   --miuix-color-primary: #3482FF;
   --miuix-color-on-primary: #FFFFFF;
@@ -29,19 +30,23 @@
   --miuix-color-tertiary-container: #EAF2FF;
   --miuix-color-on-tertiary-container: #3482FF;
   --miuix-color-tertiary-container-variant: #EAF2FF;
-  --miuix-color-background: #F2F2F2;
+  /* background = Color.White in KMP */
+  --miuix-color-background: #FFFFFF;
   --miuix-color-background-transparent: rgba(255, 255, 255, 0.75);
   --miuix-color-on-background: #000000;
   --miuix-color-on-background-variant: #8C93B0;
-  --miuix-color-surface: #F2F2F2;
+  /* surface = Color(0xFFF7F7F7) in KMP */
+  --miuix-color-surface: #F7F7F7;
   --miuix-color-surface-transparent: rgba(247, 247, 247, 0.75);
   --miuix-color-on-surface: #000000;
+  /* surfaceVariant = Color.White in KMP */
   --miuix-color-surface-variant: #FFFFFF;
   --miuix-color-surface-variant-transparent: rgba(255, 255, 255, 0.75);
-  --miuix-color-on-surface-secondary: rgba(0, 0, 0, 0.8);
-  --miuix-color-on-surface-variant-summary: rgba(0, 0, 0, 0.6);
-  --miuix-color-on-surface-variant-actions: rgba(0, 0, 0, 0.4);
+  --miuix-color-on-surface-secondary: rgba(0, 0, 0, 0.8);           /* 0xCC000000 */
+  --miuix-color-on-surface-variant-summary: rgba(0, 0, 0, 0.6);     /* 0x99000000 */
+  --miuix-color-on-surface-variant-actions: rgba(0, 0, 0, 0.4);     /* 0x66000000 */
   --miuix-color-disabled-on-surface: #B2B2B2;
+  /* surfaceContainer = Color.White in KMP */
   --miuix-color-surface-container: #FFFFFF;
   --miuix-color-on-surface-container: #000000;
   --miuix-color-on-surface-container-variant: #959595;
@@ -51,11 +56,14 @@
   --miuix-color-on-surface-container-highest: #000000;
   --miuix-color-outline: #D9D9D9;
   --miuix-color-divider-line: #E0E0E0;
-  --miuix-color-slider-key-point: rgba(163, 179, 205, 0.3);
+  --miuix-color-slider-key-point: rgba(163, 179, 205, 0.302);  /* 0x4DA3B3CD */
   --miuix-color-slider-key-point-foreground: #6EB5FF;
-  --miuix-color-slider-background: rgba(0, 0, 0, 0.06);
+  /* sliderBackground = 0x0F000000 = 6% black */
+  --miuix-color-slider-background: rgba(0, 0, 0, 0.059);
+  --miuix-color-window-dimming: rgba(0, 0, 0, 0.3);
 }
 
+/* Dark theme — matches darkColorScheme() in Colors.kt */
 [data-theme="dark"] {
   --miuix-color-primary: #277AF7;
   --miuix-color-on-primary: #FFFFFF;
@@ -85,35 +93,43 @@
   --miuix-color-secondary-container-variant: #4F4F4F;
   --miuix-color-on-secondary-container-variant: #959595;
   --miuix-color-tertiary-container: #2B3B54;
-  --miuix-color-on-tertiary-container: #4788ff;
+  --miuix-color-on-tertiary-container: #4788FF;
   --miuix-color-tertiary-container-variant: #505050;
-  --miuix-color-background: #000000;
+  /* background = Color(0xFF242424) in KMP darkColorScheme */
+  --miuix-color-background: #242424;
   --miuix-color-background-transparent: rgba(36, 36, 36, 0.75);
-  --miuix-color-on-background: rgba(255, 255, 255, 0.9);
+  --miuix-color-on-background: rgba(255, 255, 255, 0.902);      /* 0xE6FFFFFF */
   --miuix-color-on-background-variant: #787E96;
+  /* surface = Color.Black in KMP darkColorScheme */
   --miuix-color-surface: #000000;
   --miuix-color-surface-transparent: rgba(0, 0, 0, 0.75);
   --miuix-color-on-surface: #F2F2F2;
+  /* surfaceVariant = Color(0xFF242424) in KMP darkColorScheme */
   --miuix-color-surface-variant: #242424;
   --miuix-color-surface-variant-transparent: rgba(36, 36, 36, 0.75);
-  --miuix-color-on-surface-secondary: rgba(255, 255, 255, 0.8);
-  --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.5);
-  --miuix-color-on-surface-variant-actions: rgba(255, 255, 255, 0.4);
+  --miuix-color-on-surface-secondary: rgba(255, 255, 255, 0.8);      /* 0xCCFFFFFF */
+  --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.502);  /* 0x80FFFFFF */
+  --miuix-color-on-surface-variant-actions: rgba(255, 255, 255, 0.4);    /* 0x66FFFFFF */
   --miuix-color-disabled-on-surface: #666666;
-  --miuix-color-surface-container: #1C1C1C;
-  --miuix-color-on-surface-container: rgba(255, 255, 255, 0.9);
+  /* surfaceContainer = Color(0xFF242424) in KMP darkColorScheme */
+  --miuix-color-surface-container: #242424;
+  --miuix-color-on-surface-container: rgba(255, 255, 255, 0.902);   /* 0xE6FFFFFF */
   --miuix-color-on-surface-container-variant: #737373;
+  /* surfaceContainerHigh = Color(0xFF242424) */
   --miuix-color-surface-container-high: #242424;
   --miuix-color-on-surface-container-high: #666666;
   --miuix-color-surface-container-highest: #2D2D2D;
   --miuix-color-on-surface-container-highest: #E9E9E9;
   --miuix-color-outline: #404040;
   --miuix-color-divider-line: #393939;
-  --miuix-color-slider-key-point: rgba(122, 138, 166, 0.3);
+  --miuix-color-slider-key-point: rgba(122, 138, 166, 0.302);  /* 0x4D7A8AA6 */
   --miuix-color-slider-key-point-foreground: #5DAAFF;
-  --miuix-color-slider-background: rgba(255, 255, 255, 0.15);
+  /* sliderBackground = 0x26FFFFFF = 14.9% white */
+  --miuix-color-slider-background: rgba(255, 255, 255, 0.149);
+  --miuix-color-window-dimming: rgba(0, 0, 0, 0.6);
 }
 
+/* System dark mode (when no data-theme="light" override) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --miuix-color-primary: #277AF7;
@@ -144,11 +160,11 @@
     --miuix-color-secondary-container-variant: #4F4F4F;
     --miuix-color-on-secondary-container-variant: #959595;
     --miuix-color-tertiary-container: #2B3B54;
-    --miuix-color-on-tertiary-container: #4788ff;
+    --miuix-color-on-tertiary-container: #4788FF;
     --miuix-color-tertiary-container-variant: #505050;
-    --miuix-color-background: #000000;
+    --miuix-color-background: #242424;
     --miuix-color-background-transparent: rgba(36, 36, 36, 0.75);
-    --miuix-color-on-background: rgba(255, 255, 255, 0.9);
+    --miuix-color-on-background: rgba(255, 255, 255, 0.902);
     --miuix-color-on-background-variant: #787E96;
     --miuix-color-surface: #000000;
     --miuix-color-surface-transparent: rgba(0, 0, 0, 0.75);
@@ -156,11 +172,11 @@
     --miuix-color-surface-variant: #242424;
     --miuix-color-surface-variant-transparent: rgba(36, 36, 36, 0.75);
     --miuix-color-on-surface-secondary: rgba(255, 255, 255, 0.8);
-    --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.5);
+    --miuix-color-on-surface-variant-summary: rgba(255, 255, 255, 0.502);
     --miuix-color-on-surface-variant-actions: rgba(255, 255, 255, 0.4);
     --miuix-color-disabled-on-surface: #666666;
-    --miuix-color-surface-container: #1C1C1C;
-    --miuix-color-on-surface-container: rgba(255, 255, 255, 0.9);
+    --miuix-color-surface-container: #242424;
+    --miuix-color-on-surface-container: rgba(255, 255, 255, 0.902);
     --miuix-color-on-surface-container-variant: #737373;
     --miuix-color-surface-container-high: #242424;
     --miuix-color-on-surface-container-high: #666666;
@@ -168,8 +184,9 @@
     --miuix-color-on-surface-container-highest: #E9E9E9;
     --miuix-color-outline: #404040;
     --miuix-color-divider-line: #393939;
-    --miuix-color-slider-key-point: rgba(122, 138, 166, 0.3);
+    --miuix-color-slider-key-point: rgba(122, 138, 166, 0.302);
     --miuix-color-slider-key-point-foreground: #5DAAFF;
-    --miuix-color-slider-background: rgba(255, 255, 255, 0.15);
+    --miuix-color-slider-background: rgba(255, 255, 255, 0.149);
+    --miuix-color-window-dimming: rgba(0, 0, 0, 0.6);
   }
 }

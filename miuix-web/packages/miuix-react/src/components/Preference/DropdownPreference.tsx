@@ -44,7 +44,7 @@ export const DropdownPreference: React.FC<DropdownPreferenceProps> = ({
         expanded={expanded}
         onDismissRequest={() => setExpanded(false)}
         anchorRef={anchorRef as React.RefObject<HTMLElement>}
-        align="left"
+        align="right"
       >
         {items.map((item, index) => (
           <DropdownItem

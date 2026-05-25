@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import './TopAppBar.css';
 
 export interface TopAppBarProps {
-  title: string;
-  largeTitle?: string;
-  subtitle?: string;
+  title: React.ReactNode;
+  largeTitle?: React.ReactNode;
+  subtitle?: React.ReactNode;
   navigationIcon?: React.ReactNode;
   actions?: React.ReactNode;
   onBackClick?: () => void;

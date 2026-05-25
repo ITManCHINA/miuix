@@ -3,20 +3,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--miuix-color-background, #F2F2F2);
+  background-color: var(--miuix-color-background);
   z-index: 100;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s;
 }
 
-/* 动态模糊背景板 */
+/* Dynamic blur backdrop when scrolled */
 .miuix-top-app-bar-backdrop {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--miuix-color-background-transparent, rgba(242, 242, 242, 0.6));
+  background-color: var(--miuix-color-background-transparent);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   z-index: 0;
@@ -51,7 +52,8 @@
 }
 
 .miuix-top-app-bar-small-title {
-  font-size: 19px;
+  /* KMP: title3 = 20sp */
+  font-size: 20px;
   font-weight: 500;
   color: var(--miuix-color-on-surface);
   white-space: nowrap;
@@ -60,7 +62,8 @@
 }
 
 .miuix-top-app-bar-small-subtitle {
-  font-size: 12px;
+  /* KMP: body2 = 14sp */
+  font-size: 14px;
   color: var(--miuix-color-on-surface-variant-summary);
   white-space: nowrap;
   overflow: hidden;
@@ -86,6 +89,7 @@
 }
 
 .miuix-top-app-bar-large-title {
+  /* KMP: title1 = 32sp */
   font-size: 32px;
   font-weight: 600;
   color: var(--miuix-color-on-surface);
@@ -93,6 +97,7 @@
 }
 
 .miuix-top-app-bar-large-subtitle {
+  /* KMP: body2 = 14sp */
   font-size: 14px;
   color: var(--miuix-color-on-surface-variant-summary);
   margin-top: 4px;

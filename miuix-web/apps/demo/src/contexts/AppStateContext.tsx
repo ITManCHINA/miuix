@@ -6,6 +6,7 @@ export interface AppState {
   showTopAppBar: boolean;
   showNavigationBar: boolean;
   navigationRailMode: number; // 0=IconAndText, 1=IconOnly, 2=TextOnly, 3=IconWithSelectedLabel
+  navigationBarMode: number;  // 0=IconAndText, 1=IconOnly, 2=TextOnly, 3=IconWithSelectedLabel
   useFloatingNavigationBar: boolean;
   floatingNavigationBarStyle: number;
   floatingNavigationBarPosition: number;
@@ -24,6 +25,8 @@ export interface AppState {
   enableDim: boolean;
   blockInputDuringTransition: boolean;
   popDirectionFollowsSwipeEdge: boolean;
+  dynamicBackground: boolean;
+  isOs3Effect: boolean;
 }
 
 const defaultAppState: AppState = {
@@ -32,6 +35,7 @@ const defaultAppState: AppState = {
   showTopAppBar: true,
   showNavigationBar: true,
   navigationRailMode: 3,
+  navigationBarMode: 3,
   useFloatingNavigationBar: false,
   floatingNavigationBarStyle: 0,
   floatingNavigationBarPosition: 0,
@@ -50,6 +54,8 @@ const defaultAppState: AppState = {
   enableDim: true,
   blockInputDuringTransition: true,
   popDirectionFollowsSwipeEdge: false,
+  dynamicBackground: true,
+  isOs3Effect: true,
 };
 
 interface AppStateContextType {

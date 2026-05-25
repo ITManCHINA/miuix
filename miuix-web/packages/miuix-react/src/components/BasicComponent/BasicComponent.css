@@ -6,7 +6,7 @@
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
-  background-color: var(--miuix-color-surface-container);
+  background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
@@ -17,7 +17,7 @@
 
 .miuix-basic-component--clickable:active:not(.miuix-basic-component--disabled),
 .miuix-basic-component--active {
-  background-color: var(--miuix-color-surface-container-high, rgba(0, 0, 0, 0.05));
+  background-color: var(--miuix-color-slider-background);
 }
 
 .miuix-basic-component--disabled {
@@ -46,7 +46,8 @@
 }
 
 .miuix-basic-component-title {
-  font-size: 19px;
+  /* KMP: headline1 fontSize = 17sp, FontWeight.Medium */
+  font-size: 17px;
   font-weight: 500;
   color: var(--miuix-color-on-background);
 }

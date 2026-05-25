@@ -4,41 +4,66 @@
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Let clicks pass through to the backdrop or anchor when needed */
+  /* No pointer events by default so clicks pass through before visible */
+  pointer-events: none;
   z-index: 1000;
+}
+
+/* Scrim: a semi-transparent overlay that dims the background — matches official KMP demo */
+.miuix-dropdown-menu-scrim {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease;
+  pointer-events: none;
 }
 
 .miuix-dropdown-menu-portal.visible {
   pointer-events: auto;
 }
 
+.miuix-dropdown-menu-portal.visible .miuix-dropdown-menu-scrim {
+  background-color: rgba(0, 0, 0, 0.22);
+  pointer-events: auto;
+}
+
 .miuix-dropdown-menu {
   position: absolute;
-  background-color: var(--miuix-color-surface-transparent);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border-radius: 12px;
-  min-width: 160px;
-  max-width: 280px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  /* KMP: backgroundColor = surfaceContainer (solid, no blur) */
+  background-color: var(--miuix-color-surface-container);
+  /* KMP: cornerRadius = 16.dp */
+  border-radius: 16px;
+  /* KMP: ListPopupColumn min=200dp, max=288dp */
+  min-width: 200px;
+  max-width: 288px;
+  /* Subtle shadow — matches KMP elevation */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 6px rgba(0, 0, 0, 0.1);
+  /* Entry animation: spring-like scale from origin */
   transform: scale(0.85);
   opacity: 0;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.15s ease-out;
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.15s ease-out;
   pointer-events: none;
-  overflow: hidden; /* For clip reveal effect */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  will-change: transform, opacity;
 }
 
 .miuix-dropdown-menu--expanded {
   transform: scale(1);
   opacity: 1;
   pointer-events: auto;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.2s ease-in;
 }
 
 .miuix-dropdown-menu-content {
   overflow-y: auto;
-  max-height: 400px;
+  /* KMP: MAX_ITEMS_FOR_HEIGHT = 8, each item ~56px → max ~448px */
+  max-height: 448px;
   display: flex;
   flex-direction: column;
 }
@@ -47,20 +72,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
+  /* KMP: insideMargin 16dp horizontal + 14dp vertical */
+  padding: 14px 20px;
   cursor: pointer;
   background-color: transparent;
-  transition: background-color 0.2s;
+  transition: background-color 0.15s;
   -webkit-tap-highlight-color: transparent;
+  min-height: 52px;
+  box-sizing: border-box;
+}
+
+.miuix-dropdown-item:hover:not(.miuix-dropdown-item--disabled) {
+  background-color: var(--miuix-color-surface-container-high);
 }
 
 .miuix-dropdown-item:active:not(.miuix-dropdown-item--disabled) {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--miuix-color-surface-container-highest);
 }
 
 .miuix-dropdown-item--selected {
-  background-color: var(--miuix-color-surface-container);
-  /* The original miuix usually highlights the background or keeps it surface container and colors the text */
+  /* Selected item keeps surface-container bg; text turns primary */
 }
 
 .miuix-dropdown-item--disabled {
@@ -72,16 +103,19 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1;
 }
 
 .miuix-dropdown-item-text {
+  /* KMP: headline1 = 17sp, medium */
   font-size: 17px;
   font-weight: 500;
   color: var(--miuix-color-on-surface-container);
 }
 
 .miuix-dropdown-item-summary {
-  font-size: 13px;
+  /* KMP: body2 = 14sp */
+  font-size: 14px;
   color: var(--miuix-color-on-surface-variant-summary);
 }
 
@@ -93,4 +127,23 @@
 .miuix-dropdown-item-check {
   color: var(--miuix-color-primary);
   margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.miuix-dropdown-divider {
+  height: 1px;
+  background-color: var(--miuix-color-divider-line);
+  margin: 6px 0;
+  opacity: 0.8;
+}
+
+.miuix-dropdown-item-chevron {
+  color: var(--miuix-color-on-surface-variant-actions);
+  margin-left: 12px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.miuix-dropdown-item--has-submenu {
+  position: relative;
 }

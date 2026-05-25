@@ -21,6 +21,7 @@ export const NavigationRail: React.FC<NavigationRailProps> = ({
       className={`miuix-navigation-rail ${showDivider ? 'miuix-navigation-rail--divider' : ''} ${className}`}
       {...props}
     >
+      <div className="miuix-navigation-rail-backdrop" />
       {Children.map(children, child => {
         if (isValidElement(child)) {
           return cloneElement(child, { mode } as any);

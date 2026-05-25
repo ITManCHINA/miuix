@@ -9,6 +9,8 @@ export * from './components/Checkbox/Checkbox';
 export * from './components/RadioButton/RadioButton';
 export * from './components/BasicComponent/BasicComponent';
 export * from './components/BasicComponent/SmallTitle';
+export * from './components/BasicComponent/VerticalScrollBar';
+export * from './components/BasicComponent/BgEffectBackground';
 export * from './components/Preference/ArrowPreference';
 export * from './components/Preference/SwitchPreference';
 export * from './components/Preference/CheckboxPreference';
@@ -34,9 +36,15 @@ export * from './components/FloatingNavigationBar/FloatingNavigationBar';
 
 // Hooks
 export * from './hooks/useHapticFeedback';
+export * from './hooks/useOverscrollPhysics';
+export * from './hooks/useScrollEndHaptic';
+
+// Theme Context & Provider
+export * from './components/MiuixTheme/MiuixThemeProvider';
 
 // Utils
 export * from './utils/colorUtils';
+export * from './utils/themeEngine';
 
 // Icons
 export * from './components/Icons';
